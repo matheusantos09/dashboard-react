@@ -1,5 +1,7 @@
 export const TOKEN_KEY = 'DASHBOARD_TOKEN_KEY';
+export const PERMISSIONS_KEY = 'DASHBOARD_PERMISSIONS_KEY';
 
+//@TODO Verificar revalidação do token
 export const isAuthenticated = () => {
     return localStorage.getItem(TOKEN_KEY) !== null
     // console.log(localStorage.getItem(TOKEN_KEY));
@@ -29,6 +31,8 @@ export const login = (token, expires_in) => {
         expires: expires_in
     }))
 };
+
 export const logout = () => {
     localStorage.removeItem(TOKEN_KEY)
+    localStorage.removeItem(PERMISSIONS_KEY)
 };

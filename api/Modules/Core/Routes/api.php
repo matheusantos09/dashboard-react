@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/core', function (Request $request) {
-    return $request->user();
+Route::group([
+    'prefix' => 'auth',
+], function () {
+
+    Route::get('permissions', 'PermissionController@permissions');
+
 });

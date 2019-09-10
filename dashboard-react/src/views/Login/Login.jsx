@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
-import {Link, withRouter} from 'react-router-dom'
+import {withRouter} from 'react-router-dom'
 import api from '../../services/api'
 import {login} from '../../services/auth'
-import { ApiRouteList } from '../../services/routes';
-import { MasterLogin } from "../../components/layouts/Master";
+import {savePermissions} from "../../services/permissions";
+import {ApiRouteList} from '../../services/routes';
+import {MasterLogin} from "../../components/layouts/Master";
 
 class Login extends Component {
 
@@ -44,6 +45,8 @@ class Login extends Component {
 
                     login(response.data.token, response.data.expires_in)
 
+                    savePermissions()
+
                     this.props.history.push({
                         pathname: '/app',
                         state: {msgWelcome: 'Login feito com sucesso'}
@@ -55,8 +58,6 @@ class Login extends Component {
                     console.log(error);
 
                     if (typeof error.data !== 'undefined') {
-
-                        console.log('tete');
 
                         var msgError = error.data.content ? error.data.content : error.content
 
@@ -111,14 +112,15 @@ class Login extends Component {
                             <div className="row">
                                 <div className="col-8">
                                     <div className="icheck-primary">
-                                        <input type="checkbox" id="remember" />
+                                        <input type="checkbox" id="remember"/>
                                         <label htmlFor="remember">
                                             Lembre de mim
                                         </label>
                                     </div>
                                 </div>
                                 <div className="col-4">
-                                    <button type="submit" className="btn btn-primary btn-block btn-flat">Sign In</button>
+                                    <button type="submit" className="btn btn-primary btn-block btn-flat">Sign In
+                                    </button>
                                 </div>
                             </div>
                         </form>

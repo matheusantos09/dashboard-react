@@ -19,6 +19,7 @@ export const RouteList = {
         path: '/logout',
         name: 'Logout',
         icon: 'fas fa-sign-out-alt',
+        permission: ''
     },
 }
 
@@ -26,22 +27,7 @@ export const RouteList = {
 
 export const ApiRouteList = {
     login: AuthRoutesPrefix + '/login',
-    signup: AuthRoutesPrefix + '/signup',
-    tasks: AuthRoutesPrefix + '/task',
-    tasksList: AuthRoutesPrefix + '/task-list',
-    completedTasks: AuthRoutesPrefix + '/task/completed',
-    saveTask: AuthRoutesPrefix + '/task/save',
-    taskDestroy: AuthRoutesPrefix + '/task/destroy',
-    changeStatus: AuthRoutesPrefix + '/change-task',
-    taskUpdate: AuthRoutesPrefix + '/task/edit/',
-    eventTimer: AuthRoutesPrefix + '/timer-event',
-    saveConfigUser: AuthRoutesPrefix + '/user/save',
-    loadConfigUser: AuthRoutesPrefix + '/user/load',
-    startSnooze: AuthRoutesPrefix + '/user/snooze/start',
-    endSnooze: AuthRoutesPrefix + '/user/snooze/end',
-    randomPhase: AuthRoutesPrefix + '/phase/random',
-    userUploadImage: AuthRoutesPrefix + '/user/upload',
-    notificationIndex: AuthRoutesPrefix + '/notification'
+    permissions: AuthRoutesPrefix + '/permissions',
 }
 
 
@@ -50,6 +36,8 @@ export const ApiRouteList = {
 *   path (string) => Rota para o recurso
 *   name (string) => Nome para o item no menu
 *   icon (string) => Ícone do item (FontAwesome 5)
+*   permission (string) => Nome da permissão para a exibição deste recurso
+*       * Obs: para liberação do recurso a todos NÃO defina essa propriedade
 *
 *   Opcional
 *       badge (Objeto)
@@ -62,6 +50,11 @@ export const MenuSidebar = [
         name: RouteList.logout.name,
         icon: RouteList.logout.icon,
     },
+    {
+        path: 'Lista de usuários',
+        name: 'Lista de usuários',
+        icon: RouteList.logout.icon,
+    }
 ]
 
 const PrivateRoute = ({component: Component, ...rest}) => (
@@ -77,6 +70,7 @@ const PrivateRoute = ({component: Component, ...rest}) => (
     />
 );
 
+//@TODO melhor exibição da página de 404 quando não está logado
 const PageNotFound = () => (
     isAuthenticated()         ?
         <NotFoundLogged />    :

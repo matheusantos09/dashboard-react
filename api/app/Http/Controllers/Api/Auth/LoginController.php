@@ -48,10 +48,14 @@ class LoginController extends Controller
                 return $this->responseJson(true, 'Usuário não encontrado', 400);
             }
 
+            /*
+             * @TODO alterar tempo máximo do token e usar revalidação do token
+             * */
+
             return response()->json([
                 'error'      => false,
                 'token'      => $token,
-                'expires_in' => auth('api')->factory()->getTTL() * 60
+                'expires_in' => auth('api')->factory()->getTTL() * 60000
             ]);
 
         } catch (JWTException $e) {
