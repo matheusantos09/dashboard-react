@@ -49,11 +49,31 @@ export const MenuSidebar = [
         path: RouteList.logout.path,
         name: RouteList.logout.name,
         icon: RouteList.logout.icon,
+        permission: 'user'
     },
     {
         path: 'Lista de usuários',
         name: 'Lista de usuários',
         icon: RouteList.logout.icon,
+        permission: 'user'
+    },
+    {
+        path: 'Lista de usuários',
+        name: 'Lista de usuários',
+        icon: RouteList.logout.icon,
+        permission: 'user'
+    },
+    {
+        path: 'Lista de usuários',
+        name: 'Lista de usuários',
+        icon: RouteList.logout.icon,
+        permission: 'user'
+    },
+    {
+        path: 'Lista de usuários',
+        name: 'Lista de usuários',
+        icon: RouteList.logout.icon,
+        permission: 'user'
     }
 ]
 

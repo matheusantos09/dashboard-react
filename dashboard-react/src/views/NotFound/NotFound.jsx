@@ -1,12 +1,7 @@
 import React, {Component} from 'react'
 import MasterLayout, {MasterLogin} from "../../components/layouts/Master";
-import {getPermissions, verifyPermission} from "../../services/permissions";
 
 export class NotFoundLogged extends Component {
-
-    componentDidMount() {
-    console.log(verifyPermission('user'))
-    }
 
     render() {
         return (
