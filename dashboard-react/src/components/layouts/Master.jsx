@@ -3,6 +3,7 @@ import React, {Component} from 'react'
 import Header from '../Header/Header'
 import Footer from '../Footer/Footer'
 import Sidebar from '../Sidebar/Sidebar';
+import Loader from '../Loader/Loader';
 
 export class MasterLayout extends Component {
 
@@ -11,26 +12,31 @@ export class MasterLayout extends Component {
 
         body[0].classList.add('sidebar-mini')
         body[0].classList.add('layout-fixed')
+
     }
 
     render() {
         return (
             <div className="wrapper">
+                <Loader
+                    active={this.props.loaderActive}
+                >
 
-                <Header/>
+                    <Header/>
 
-                <Sidebar/>
+                    <Sidebar/>
 
-                <div className="content-wrapper">
+                    <div className="content-wrapper">
 
-                    <div className="content-header">
+                        <div className="content-header">
+                        </div>
+
+                        {this.props.children}
                     </div>
 
-                    {this.props.children}
-                </div>
+                    <Footer/>
 
-                <Footer/>
-
+                </Loader>
             </div>
         )
     }
@@ -56,3 +62,7 @@ export class MasterLogin extends Component {
 }
 
 export default MasterLayout
+
+MasterLayout.defaultProps = {
+    loaderActive: true
+}

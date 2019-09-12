@@ -19,4 +19,6 @@ Route::group([
 
     Route::get('permissions', 'PermissionController@permissions');
 
+    Route::get('dashboard', 'DashboardController@getInformations');
+
 });

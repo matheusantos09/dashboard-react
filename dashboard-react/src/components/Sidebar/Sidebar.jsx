@@ -21,79 +21,82 @@ class Sidebar extends Component {
 
         let menuList = [];
 
+        // eslint-disable-next-line
         MenuSidebar.map((item, index) => {
 
-           if (verifyPermission(item.permission)){
-               let icon = 'nav-icon ';
-               icon += item.icon ? item.icon : '';
+            if (!item.permission || verifyPermission(item.permission)) {
+                let icon = 'nav-icon ';
+                icon += item.icon ? item.icon : '';
 
-               if (item.submenu) {
+                if (item.submenu) {
 
-                   let subMenu = [];
+                    let subMenu = [];
 
-                   item.submenu.map((itemS, indexS) => {
+                    // eslint-disable-next-line
+                    item.submenu.map((itemS, indexS) => {
 
-                       let subIcon = 'nav-icon ';
-                       subIcon += itemS.icon ? itemS.icon : '';
+                        let subIcon = 'nav-icon ';
+                        subIcon += itemS.icon ? itemS.icon : '';
 
-                       subMenu.push(
-                           <li className="nav-item" key={indexS + 10}>
-                               <Link to={item.path} className="nav-link">
-                                   <i className={subIcon}/>
-                                   <p>
-                                       {item.name}
-                                       {item.badge ?
-                                           <span className={"right badge " + item.badge.color}>{item.badge.title}</span>
-                                           :
-                                           ''
-                                       }
-                                   </p>
-                               </Link>
-                           </li>
-                       )
-                   })
+                        subMenu.push(
+                            <li className="nav-item" key={indexS + 10}>
+                                <Link to={item.path} className="nav-link">
+                                    <i className={subIcon}/>
+                                    <p>
+                                        {item.name}
+                                        {item.badge ?
+                                            <span
+                                                className={"right badge " + item.badge.color}>{item.badge.title}</span>
+                                            :
+                                            ''
+                                        }
+                                    </p>
+                                </Link>
+                            </li>
+                        )
+                    })
 
-                   menuList.push(
-                       <li className="nav-item has-treeview" key={index}>
-                           <a href={(e) => {
-                               e.preventDefault()
-                           }
-                           } className="nav-link">
-                               <i className={icon}/>
-                               <p>
-                                   {item.name}
-                                   <i className="fas fa-angle-left right"/>
-                                   {item.badge ?
-                                       <span className={"right badge " + item.badge.color}>{item.badge.title}</span>
-                                       :
-                                       ''
-                                   }
-                               </p>
-                           </a>
-                           <ul className="nav nav-treeview">
-                               {subMenu}
-                           </ul>
-                       </li>
-                   )
+                    menuList.push(
+                        <li className="nav-item has-treeview" key={index}>
+                            <a href={(e) => {
+                                e.preventDefault()
+                            }
+                            } className="nav-link">
+                                <i className={icon}/>
+                                <p>
+                                    {item.name}
+                                    <i className="fas fa-angle-left right"/>
+                                    {item.badge ?
+                                        <span className={"right badge " + item.badge.color}>{item.badge.title}</span>
+                                        :
+                                        ''
+                                    }
+                                </p>
+                            </a>
+                            <ul className="nav nav-treeview">
+                                {subMenu}
+                            </ul>
+                        </li>
+                    )
 
-               } else {
-                   menuList.push(
-                       <li className="nav-item" key={index}>
-                           <Link to={item.path} className="nav-link">
-                               <i className={icon}/>
-                               <p>
-                                   {item.name}
-                                   {item.badge ?
-                                       <span className={"right badge " + item.badge.color}>{item.badge.title}</span>
-                                       :
-                                       ''
-                                   }
-                               </p>
-                           </Link>
-                       </li>
-                   )
-               }
-           }
+                } else {
+                    menuList.push(
+                        <li className="nav-item" key={index}>
+                            <Link to={item.path} className="nav-link">
+                                <i className={icon}/>
+                                <p>
+                                    {item.name}
+                                    {item.badge ?
+                                        <span className={"right badge " + item.badge.color}>{item.badge.title}</span>
+                                        :
+                                        ''
+                                    }
+                                </p>
+                            </Link>
+                        </li>
+                    )
+                }
+            }
         });
 
         this.menuListItems = menuList

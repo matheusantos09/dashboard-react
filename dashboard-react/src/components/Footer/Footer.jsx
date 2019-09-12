@@ -2,6 +2,8 @@ import React, {Component} from "react";
 
 class Footer extends Component {
 
+    //@TODO Criar salve em cache para exibir a versão e nome do sistema
+
     render() {
         return (
             <footer className="main-footer">

@@ -1,5 +1,7 @@
 <?php
 
+use Modules\Core\Helpers\Chart;
+
 return [
 
     /*
@@ -176,6 +178,9 @@ return [
         App\Providers\TelescopeServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /* Packages without auto discovery */
+        Rossedman\Teamwork\TeamworkServiceProvider::class
+
     ],
 
     /*
@@ -232,7 +237,9 @@ return [
          */
         'JWTAuth'      => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory'   => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'Teamwork'     => Rossedman\Teamwork\Facades\Teamwork::class,
 
+        'ChartHelper' => Chart::class
     ],
 
 ];

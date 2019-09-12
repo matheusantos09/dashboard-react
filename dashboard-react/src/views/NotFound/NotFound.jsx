@@ -1,11 +1,28 @@
 import React, {Component} from 'react'
-import MasterLayout, {MasterLogin} from "../../components/layouts/Master";
+import MasterLayout, {MasterLogin} from '../../components/layouts/Master';
 
 export class NotFoundLogged extends Component {
 
+    constructor() {
+        super();
+
+        this.state = {
+            loaderActive: true
+        }
+
+    }
+
+    componentDidMount() {
+        this.setState({
+            loaderActive: false
+        })
+    }
+
     render() {
         return (
-            <MasterLayout>
+            <MasterLayout
+                loaderActive={this.state.loaderActive}
+            >
                 <div className="pageNotFound">
                     <p className="zoom-area">Não encontramos o que você estava procurando. <br/> Use o menu lateral para
                         ver as opções disponível </p>

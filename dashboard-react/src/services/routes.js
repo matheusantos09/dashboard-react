@@ -6,6 +6,7 @@ import {isAuthenticated} from "./auth"
 import Login from '../views/Login/Login'
 import {NotFoundLogged, NotFoundNotLogged} from '../views/NotFound/NotFound'
 import Logout from '../views/Logout/Logout'
+import Painel from "../views/Painel/Painel";
 
 const AppNameRoute = '/app'
 const AuthRoutesPrefix = '/auth'
@@ -13,7 +14,7 @@ const AuthRoutesPrefix = '/auth'
 export const RouteList = {
     login: {
         path: '/',
-        name: 'Login'
+        name: 'Login',
     },
     logout: {
         path: '/logout',
@@ -21,6 +22,16 @@ export const RouteList = {
         icon: 'fas fa-sign-out-alt',
         permission: ''
     },
+    painel: {
+        path: AppNameRoute,
+        name: 'Home',
+        icon: 'fas fa-home',
+    },
+    analytics: {
+        path: AppNameRoute + '/analytics',
+        name: 'Análise',
+        icon: 'fas fa-tachometer-alt',
+    }
 }
 
 //@TODO fazer esquema de validação para as permissões
@@ -28,6 +39,7 @@ export const RouteList = {
 export const ApiRouteList = {
     login: AuthRoutesPrefix + '/login',
     permissions: AuthRoutesPrefix + '/permissions',
+    dashboardGetInformations: AuthRoutesPrefix + '/dashboard',
 }
 
 
@@ -46,34 +58,19 @@ export const ApiRouteList = {
 */
 export const MenuSidebar = [
     {
+        path: RouteList.painel.path,
+        name: RouteList.painel.name,
+        icon: RouteList.painel.icon,
+    },
+    {
+        path: RouteList.analytics.path,
+        name: RouteList.analytics.name,
+        icon: RouteList.analytics.icon,
+    },
+    {
         path: RouteList.logout.path,
         name: RouteList.logout.name,
         icon: RouteList.logout.icon,
-        permission: 'user'
-    },
-    {
-        path: 'Lista de usuários',
-        name: 'Lista de usuários',
-        icon: RouteList.logout.icon,
-        permission: 'user'
-    },
-    {
-        path: 'Lista de usuários',
-        name: 'Lista de usuários',
-        icon: RouteList.logout.icon,
-        permission: 'user'
-    },
-    {
-        path: 'Lista de usuários',
-        name: 'Lista de usuários',
-        icon: RouteList.logout.icon,
-        permission: 'user'
-    },
-    {
-        path: 'Lista de usuários',
-        name: 'Lista de usuários',
-        icon: RouteList.logout.icon,
-        permission: 'user'
     }
 ]
 
@@ -92,9 +89,9 @@ const PrivateRoute = ({component: Component, ...rest}) => (
 
 //@TODO melhor exibição da página de 404 quando não está logado
 const PageNotFound = () => (
-    isAuthenticated()         ?
-        <NotFoundLogged />    :
-        <NotFoundNotLogged />
+    isAuthenticated() ?
+        <NotFoundLogged/> :
+        <NotFoundNotLogged/>
 )
 
 const Routes = () => (
@@ -102,6 +99,7 @@ const Routes = () => (
         <Switch>
             <Route exact path={RouteList.login.path} component={Login}/>
             <PrivateRoute exact path={RouteList.logout.path} component={Logout}/>
+            <PrivateRoute exact path={RouteList.painel.path} component={Painel}/>
             <Route path='*' component={PageNotFound}/>
         </Switch>
     </BrowserRouter>

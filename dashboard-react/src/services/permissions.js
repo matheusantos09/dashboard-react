@@ -29,9 +29,9 @@ export const setPermissions = (permissions) => {
 
     // ENCRYPT
     var encryptedArray = []
-    permissions.map((item) => {
+    permissions.map((item) => (
         encryptedArray.push(CryptoJS.AES.encrypt(item, SECRET_CRYPTOJS_KEY).toString())
-    })
+    ))
 
     localStorage.setItem(PERMISSIONS_KEY, JSON.stringify({
         permissions: encryptedArray
@@ -47,6 +47,7 @@ export const getPermissions = () => {
     }
 
 // DECRYPT
+    // eslint-disable-next-line
     object.permissions.map((item) => {
         var bytes = CryptoJS.AES.decrypt(String(item), SECRET_CRYPTOJS_KEY);
         var decryptedData = bytes.toString(CryptoJS.enc.Utf8);
