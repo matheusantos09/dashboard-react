@@ -54,8 +54,6 @@ class Painel extends Component {
                 loaderActive={this.state.loaderActive}
             >
 
-                <section className="content">
-                    <div className="container-fluid">
                         <div className="row">
 
                             {
@@ -118,8 +116,6 @@ class Painel extends Component {
                             }
 
                         </div>
-                    </div>
-                </section>
             </MasterLayout>
         )
     }

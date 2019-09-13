@@ -1,6 +1,6 @@
 <?php
 
-namespace Module\Core\Traits;
+namespace App\Traits;
 
 /**
  * Trait Functions

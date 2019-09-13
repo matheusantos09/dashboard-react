@@ -7,6 +7,7 @@ import Login from '../views/Login/Login'
 import {NotFoundLogged, NotFoundNotLogged} from '../views/NotFound/NotFound'
 import Logout from '../views/Logout/Logout'
 import Painel from "../views/Painel/Painel";
+import AnalyticActive from "../views/Analytic/AnalyticActive";
 
 const AppNameRoute = '/app'
 const AuthRoutesPrefix = '/auth'
@@ -31,6 +32,11 @@ export const RouteList = {
         path: AppNameRoute + '/analytics',
         name: 'Análise',
         icon: 'fas fa-tachometer-alt',
+    },
+    analyticProjectActive: {
+        path: AppNameRoute + '/analytics/active',
+        name: 'Projetos Ativos',
+        icon: 'fas fa-tachometer-alt',
     }
 }
 
@@ -38,8 +44,10 @@ export const RouteList = {
 
 export const ApiRouteList = {
     login: AuthRoutesPrefix + '/login',
+    refresh: AuthRoutesPrefix + '/refresh',
     permissions: AuthRoutesPrefix + '/permissions',
     dashboardGetInformations: AuthRoutesPrefix + '/dashboard',
+    analyticProjectActive: AuthRoutesPrefix + '/analytics/active',
 }
 
 
@@ -66,6 +74,13 @@ export const MenuSidebar = [
         path: RouteList.analytics.path,
         name: RouteList.analytics.name,
         icon: RouteList.analytics.icon,
+        submenu: [
+            {
+                path: RouteList.analyticProjectActive.path,
+                name: RouteList.analyticProjectActive.name,
+                icon: RouteList.analyticProjectActive.icon,
+            },
+        ]
     },
     {
         path: RouteList.logout.path,
@@ -100,6 +115,7 @@ const Routes = () => (
             <Route exact path={RouteList.login.path} component={Login}/>
             <PrivateRoute exact path={RouteList.logout.path} component={Logout}/>
             <PrivateRoute exact path={RouteList.painel.path} component={Painel}/>
+            <PrivateRoute exact path={RouteList.analyticProjectActive.path} component={AnalyticActive}/>
             <Route path='*' component={PageNotFound}/>
         </Switch>
     </BrowserRouter>

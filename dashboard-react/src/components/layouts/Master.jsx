@@ -30,8 +30,12 @@ export class MasterLayout extends Component {
 
                         <div className="content-header">
                         </div>
+                        <section className="content">
+                            <div className="container-fluid">
 
-                        {this.props.children}
+                                {this.props.children}
+                            </div>
+                        </section>
                     </div>
 
                     <Footer/>

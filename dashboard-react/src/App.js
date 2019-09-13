@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import Routes from './services/routes';
+
+/* Styles */
 import './assets/scss/App.scss'
 
 /* Import fonts and styles */

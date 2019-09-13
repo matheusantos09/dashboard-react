@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 
 /* Import routes */
-import {MenuSidebar} from "../../services/routes";
+import {MenuSidebar, RouteList} from "../../services/routes";
 
 import logo from '../../assets/img/AdminLTELogo.png'
 import {Link} from "react-router-dom";
@@ -17,7 +17,7 @@ class Sidebar extends Component {
     }
 
     //@TODO alterar o WillMount depois, pois esse metodo foi descontinuado
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
 
         let menuList = [];
 
@@ -40,13 +40,13 @@ class Sidebar extends Component {
 
                         subMenu.push(
                             <li className="nav-item" key={indexS + 10}>
-                                <Link to={item.path} className="nav-link">
+                                <Link to={itemS.path} className="nav-link">
                                     <i className={subIcon}/>
                                     <p>
-                                        {item.name}
-                                        {item.badge ?
+                                        {itemS.name}
+                                        {itemS.badge ?
                                             <span
-                                                className={"right badge " + item.badge.color}>{item.badge.title}</span>
+                                                className={"right badge " + itemS.badge.color}>{itemS.badge.title}</span>
                                             :
                                             ''
                                         }
@@ -58,10 +58,7 @@ class Sidebar extends Component {
 
                     menuList.push(
                         <li className="nav-item has-treeview" key={index}>
-                            <a href={(e) => {
-                                e.preventDefault()
-                            }
-                            } className="nav-link">
+                            <div className="nav-link">
                                 <i className={icon}/>
                                 <p>
                                     {item.name}
@@ -72,7 +69,7 @@ class Sidebar extends Component {
                                         ''
                                     }
                                 </p>
-                            </a>
+                            </div>
                             <ul className="nav nav-treeview">
                                 {subMenu}
                             </ul>
@@ -107,11 +104,11 @@ class Sidebar extends Component {
 
         return (
             <aside className="main-sidebar sidebar-dark-primary elevation-4">
-                <a href="index3.html" className="brand-link">
+                <Link to={RouteList.painel.path} className="brand-link">
                     <img src={logo} alt="AdminLTE Logo"
                          className="brand-image img-circle elevation-3"/>
                     <span className="brand-text font-weight-light">Dashboard Netzee</span>
-                </a>
+                </Link>
 
                 <div className="sidebar">
 

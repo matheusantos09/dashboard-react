@@ -10,6 +10,7 @@ Route::group([
     Route::post('/login', 'Api\Auth\LoginController@login');
     Route::post('/recovery', 'Api\Auth\ForgotPasswordController@sendResetEmail');
     Route::post('/reset', 'Api\Auth\ResetPasswordController@resetPassword');
+    Route::get('/refresh', 'Api\Auth\RefreshController@refresh');
 
 });
 
@@ -23,5 +24,12 @@ Route::group([
 
     Route::post('logout', 'Api\Auth\LogoutController@logout');
     Route::post('refresh', 'Api\Auth\RefreshController@refresh');
+
+    Route::get('permissions', 'PermissionController@permissions');
+
+    Route::get('dashboard', 'DashboardController@getInformations');
+
+    /* Analytics */
+    Route::get('analytics/active', 'AnalyticController@getInformationsActive');
 
 });

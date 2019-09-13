@@ -1,6 +1,6 @@
 <?php
 
-use Modules\Core\Helpers\Chart;
+use App\Helpers\Chart;
 
 return [
 
