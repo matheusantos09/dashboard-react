@@ -31,10 +31,14 @@ export class Card extends Component {
     render() {
         return (
 
-            <div className="card">
+            <div className={"card " + this.props.class}>
                 {this.props.children}
             </div>
 
         )
     }
+}
+
+Card.defaultProps = {
+    class: ''
 }

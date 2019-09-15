@@ -5,6 +5,7 @@ import {login} from '../../services/auth'
 import {savePermissions} from "../../services/permissions";
 import {ApiRouteList} from '../../services/routes';
 import {MasterLogin} from "../../components/layouts/Master";
+import {HandleLogin} from "../../services/handleException";
 
 class Login extends Component {
 
@@ -54,26 +55,10 @@ class Login extends Component {
 
                 })
                 .catch((error) => {
-                    console.log('CATCH');
-                    console.log(error);
 
-                    if (typeof error.data !== 'undefined') {
-
-                        var msgError = error.data.content ? error.data.content : error.content
-
-                        console.log(error.data.content);
-
-                        this.setState({
-                            error: `${msgError}`
-                        })
-
-                    } else {
-
-                        this.setState({
-                            error: 'Estamos com problema para autenticar você tente novamente mais tarde'
-                        })
-
-                    }
+                    this.setState({
+                        error: HandleLogin(error)
+                    })
 
                 });
 
@@ -84,7 +69,7 @@ class Login extends Component {
     render() {
         return (
             <MasterLogin>
-                <div className="card">
+                <div className="card login-form">
                     <div className="card-body login-card-body">
                         <p className="login-box-msg">Sign in to start your session</p>
 
@@ -92,20 +77,22 @@ class Login extends Component {
                             <div className="input-group mb-3">
                                 <input type="email" className="form-control" placeholder="Email"
                                        onChange={e => this.setState({email: e.target.value})}
+                                       required
                                 />
                                 <div className="input-group-append">
                                     <div className="input-group-text">
-                                        <span className="fas fa-envelope"></span>
+                                        <span className="fas fa-envelope"/>
                                     </div>
                                 </div>
                             </div>
                             <div className="input-group mb-3">
                                 <input type="password" className="form-control" placeholder="Password"
                                        onChange={e => this.setState({password: e.target.value})}
+                                       required
                                 />
                                 <div className="input-group-append">
                                     <div className="input-group-text">
-                                        <span className="fas fa-lock"></span>
+                                        <span className="fas fa-lock"/>
                                     </div>
                                 </div>
                             </div>
@@ -124,7 +111,17 @@ class Login extends Component {
                                 </div>
                             </div>
                         </form>
-
+                        {
+                            this.state.error
+                                ?
+                                (
+                                    <div className="alert alert-danger alert-dismissible" role="alert">
+                                        {this.state.error}
+                                    </div>
+                                )
+                                :
+                                ''
+                        }
                     </div>
                 </div>
             </MasterLogin>

@@ -4,6 +4,7 @@ import GaugeChart from '../../components/Chart/Gauge';
 import {Card, CardBody, CardTitle} from "../../components/Card/Card";
 import api from "../../services/api";
 import {ApiRouteList} from "../../services/routes";
+import MultipleSelect from "../../components/Form/MultipleSelect";
 
 class AnalyticActive extends Component {
 
@@ -47,6 +48,25 @@ class AnalyticActive extends Component {
             <MasterLayout
                 loaderActive={this.state.loaderActive}
             >
+
+                <Card class='card-primary card-outline'>
+                    <CardTitle>
+                        <i className='fa fa-filter'/>
+                        Teste
+                    </CardTitle>
+                    <CardBody>
+                        <div className="row">
+                            <div className="col-md-6">
+                                <div className="form-group">
+                                    <label className="w-100">
+                                        Filtro de projetos desativados
+                                        <MultipleSelect/>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </CardBody>
+                </Card>
 
                 <div className="grid-chart">
                     {

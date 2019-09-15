@@ -1,3 +1,5 @@
+import {removeAttempts} from "./api";
+
 export const TOKEN_KEY = 'DASHBOARD_TOKEN_KEY';
 export const PERMISSIONS_KEY = 'DASHBOARD_PERMISSIONS_KEY';
 
@@ -33,6 +35,15 @@ export const login = (token, expires_in) => {
 };
 
 export const logout = () => {
-    localStorage.removeItem(TOKEN_KEY)
-    localStorage.removeItem(PERMISSIONS_KEY)
+    removeTokenKey()
+    removePermission()
+    removeAttempts()
 };
+
+export const removeTokenKey = () => {
+    localStorage.removeItem(TOKEN_KEY)
+}
+
+export const removePermission = () => {
+    localStorage.removeItem(PERMISSIONS_KEY)
+}
