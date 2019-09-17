@@ -31,5 +31,9 @@ Route::group([
 
     /* Analytics */
     Route::get('analytics/active', 'AnalyticController@getInformationsActive');
+    Route::get('analytics/filter/active', 'AnalyticController@getFilterActive');
+
+    /* Project */
+    Route::post('/project/estimate-time/save/{id}', 'ProjectController@saveEstimateTime');
 
 });

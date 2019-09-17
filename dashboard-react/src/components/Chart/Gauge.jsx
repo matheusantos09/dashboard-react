@@ -3,58 +3,10 @@ import ReactSpeedometer from "react-d3-speedometer"
 
 class GaugeChart extends Component {
 
-    constructor() {
-        super();
-
-        this.state = {
-            height: 300,
-        };
-        this.handleResize = this.handleResize.bind(this);
-    }
-
-    handleResize() {
-
-        var currentWidth = window.innerWidth;
-
-        var breaks = [];
-        breaks[1440] = 260
-        breaks[1400] = 220
-        breaks[1200] = 200
-        breaks[1024] = 180
-        breaks[768] = 250
-        breaks[550] = 270
-        breaks[425] = 240
-        breaks[375] = 200
-        breaks[320] = 150
-
-        // eslint-disable-next-line
-        breaks.map((item, index) => {
-            if (index <= currentWidth) {
-                this.setState({
-                    height: item,
-                })
-                return true;
-            }
-        })
-
-    }
-
-    componentDidMount() {
-        this.handleResize()
-    }
-
-    UNSAFE_componentWillMount() {
-        window.addEventListener('resize', this.handleResize)
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.handleResize)
-    }
-
     render() {
         return (
             <div>
-                <div style={{height: this.state.height,textAlign:'center'}}>
+                <div className="gauge-chart">
                     <ReactSpeedometer
                         value={this.props.value}
                         minValue={this.props.minValue}

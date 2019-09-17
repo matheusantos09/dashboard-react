@@ -3727,16 +3727,16 @@
         },
         {
             "name": "facade/ignition",
-            "version": "1.6.5",
+            "version": "1.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/facade/ignition.git",
-                "reference": "97244f6d511332f3574acab8242c09ddcfda892b"
+                "reference": "8fe0ab9850e92aa5e4492c44145b28bc5b83051a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/facade/ignition/zipball/97244f6d511332f3574acab8242c09ddcfda892b",
-                "reference": "97244f6d511332f3574acab8242c09ddcfda892b",
+                "url": "https://api.github.com/repos/facade/ignition/zipball/8fe0ab9850e92aa5e4492c44145b28bc5b83051a",
+                "reference": "8fe0ab9850e92aa5e4492c44145b28bc5b83051a",
                 "shasum": ""
             },
             "require": {
@@ -3791,7 +3791,7 @@
                 "laravel",
                 "page"
             ],
-            "time": "2019-09-13T13:38:04+00:00"
+            "time": "2019-09-16T19:55:14+00:00"
         },
         {
             "name": "facade/ignition-contracts",

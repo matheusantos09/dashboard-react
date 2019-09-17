@@ -200,6 +200,8 @@ class Project
 
             DB::commit();
 
+            return $projects[$projectId];
+
         } catch (Exception $e) {
 
             DB::rollback();

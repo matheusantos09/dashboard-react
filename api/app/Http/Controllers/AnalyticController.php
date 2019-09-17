@@ -42,10 +42,42 @@ class AnalyticController
 
         foreach ($projects as $key => $project) {
             $data[] = [
-                'title'    => $projectIds[$key] ?? 'Não encontrado, atualize o Cache',
-                'value'    => ChartHelper::getValueTime($project),
-                'minValue' => 0,
-                'maxValue' => ChartHelper::gaugeMaxValue($project),
+                'showBlock'    => true,
+                'key'          => $key,
+                'title'        => $projectIds[$key] ?? 'Não encontrado, atualize o Cache',
+                'estimateTime' => $project['totalHoursEstimated'],
+                'value'        => ChartHelper::getValueTime($project),
+                'minValue'     => 0,
+                'maxValue'     => ChartHelper::gaugeMaxValue($project),
+            ];
+        }
+
+        return response()->json([
+            'error'   => false,
+            'message' => '',
+            'content' => $data,
+        ]);
+
+    }
+
+    public function getFilterActive()
+    {
+
+        if (!auth()->user()->can($this->permission . '-list')) {
+            return response()->json([
+                'error'   => true,
+                'message' => 'Você não tem permissão para essa ação'
+            ], 403);
+        }
+
+        $projectIds = ProjectRepository::getAllProjectsId();
+
+        $data = [];
+
+        foreach ($projectIds as $key => $project) {
+            $data[] = [
+                'value' => $key,
+                'label' => $project
             ];
         }
 

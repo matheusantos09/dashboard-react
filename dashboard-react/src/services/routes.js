@@ -48,6 +48,8 @@ export const ApiRouteList = {
     permissions: AuthRoutesPrefix + '/permissions',
     dashboardGetInformations: AuthRoutesPrefix + '/dashboard',
     analyticProjectActive: AuthRoutesPrefix + '/analytics/active',
+    filterProjectActive: AuthRoutesPrefix + '/analytics/filter/active',
+    saveEstimateTime: AuthRoutesPrefix + '/project/estimate-time/save',
 }
 
 
